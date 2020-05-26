@@ -1,0 +1,6 @@
+<resources>
+    <dimen name="translation_small">18sp</dimen>
+    <dimen name="translation_large">24sp</dimen>
+    <dimen name="text_small">20sp</dimen>
+    <dimen name="text_large">28sp</dimen>
+</resources>

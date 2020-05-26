@@ -12,7 +12,10 @@ import java.util.List;
 public class HadithData {
     public List<HashMap<String, String>> translations = new ArrayList<>();
     public List<String> hadith = new ArrayList<>();
+    private String translationLanguage = "English";
+    private boolean isStandardTextSize = true;
     private static volatile HadithData _instance;
+    private Context context;
     public static HadithData getInstance(Context context){
         if(_instance == null){
             _instance = new HadithData();
@@ -21,6 +24,7 @@ public class HadithData {
         return _instance;
     }
     private void initData(Context context){
+        this.context = context;
         List<String> listHadith = getHadiths(context);
         List<String> listEnglishTranslations = getEnglishTranslations(context);
         List<String> listUrduTranslations = getUrduTranslations(context);
@@ -30,11 +34,11 @@ public class HadithData {
             HashMap<String, String> map = new HashMap<>();
             if(i < listEnglishTranslations.size()) {
                 englishTranslation = listEnglishTranslations.get(i);
-                map.put("en", englishTranslation);
+                map.put(context.getResources().getString(R.string.language_english), englishTranslation);
             }
             if(i < listUrduTranslations.size()){
                 urduTranslation = listUrduTranslations.get(i);
-                map.put("urdu", urduTranslation);
+                map.put(context.getResources().getString(R.string.language_urdu), urduTranslation);
             }
             if(map.size() > 0) {
                 translations.add(map);
@@ -71,4 +75,19 @@ public class HadithData {
         return lines;
     }
 
+    public String getTranslationLanguage() {
+        return translationLanguage;
+    }
+
+    public void setTranslationLanguage(String translationLanguage) {
+        this.translationLanguage = translationLanguage;
+    }
+
+    public boolean isStandardTextSize() {
+        return isStandardTextSize;
+    }
+
+    public void setStandardTextSize(boolean standardTextSize) {
+        isStandardTextSize = standardTextSize;
+    }
 }

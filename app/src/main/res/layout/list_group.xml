@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:padding="8dp"
     android:background="@color/cardview_shadow_start_color"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:id="@+id/list_group_layout">
  <androidx.cardview.widget.CardView
      android:layout_width="match_parent"
      android:layout_height="wrap_content"
@@ -13,6 +14,7 @@
      app:cardCornerRadius="10dp"
      app:cardBackgroundColor="@color/lightbrown"
      android:backgroundTintMode="screen"
+     android:id="@+id/hadithCard"
      >
   <LinearLayout
       android:layout_width="match_parent"
@@ -33,7 +35,7 @@
    <TextView
        android:id="@+id/lblListHeader2"
        android:paddingLeft="?android:attr/expandableListPreferredItemPaddingLeft"
-       android:textSize="20dp"
+       android:textSize="@dimen/text_small"
        android:textColor="@android:color/black"
        android:layout_width="match_parent"
        android:layout_height="wrap_content"

@@ -10,18 +10,38 @@
     android:background="@drawable/background"
     android:layout_weight="10"
     android:id="@+id/mainLayout"
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start"
     >
-    <ImageButton
-        android:layout_width="30dp"
-        android:layout_height="30dp"
-        android:id="@+id/hidthExpander"
-        android:background="@drawable/ic_expand_more"
-        >
-    </ImageButton>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.25">
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/hidthExpander"
+            android:background="@drawable/ic_expand_more"
+            android:layout_alignParentLeft="true"
+            >
+        </ImageButton>
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/appSettings"
+            android:background="@drawable/ic_settings"
+            android:layout_alignParentRight="true"
+            android:onClick="openSettings"
+            >
+        </ImageButton>
+
+    </RelativeLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="9.5"
+        android:layout_weight="9.75"
         android:orientation="vertical"
         android:id="@+id/hadithLayout"
         android:visibility="invisible">

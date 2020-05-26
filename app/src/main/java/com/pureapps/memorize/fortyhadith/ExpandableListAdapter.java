@@ -2,6 +2,7 @@ package com.pureapps.memorize.fortyhadith;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 public class ExpandableListAdapter extends BaseExpandableListAdapter {
+
     private Context context;
 
     public ExpandableListAdapter(Context context) {
@@ -32,10 +34,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
 
     @Override
     public Object getChild(int groupPosition, int childPosition) {
-        if(groupPosition < HadithData.getInstance(context).translations.size()  && HadithData.getInstance(context).translations.get(groupPosition).containsKey("urdu")){
-            return HadithData.getInstance(context).translations.get(groupPosition).get("urdu");
+        String language = HadithData.getInstance(context).getTranslationLanguage();
+        if(groupPosition < HadithData.getInstance(context).translations.size()
+                && HadithData.getInstance(context).translations.get(groupPosition).containsKey(language)){
+            return HadithData.getInstance(context).translations.get(groupPosition).get(language);
         }
-        return HadithData.getInstance(context).translations.get(groupPosition).get("en");
+        return HadithData.getInstance(context).translations.get(groupPosition).get(context.getResources().getString(R.string.default_language));
     }
 
     @Override
@@ -64,7 +68,19 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         TextView lblListHeader1 = (TextView)convertView.findViewById(R.id.lblListHeader1);
         lblListHeader1.setTypeface(null, Typeface.ITALIC);
         lblListHeader1.setText(values[0]);
+        if(HadithData.getInstance(context).isStandardTextSize()) {
+            lblListHeader1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        }
+        else{
+            lblListHeader1.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26);
+        }
         TextView lblListHeader2 = (TextView)convertView.findViewById(R.id.lblListHeader2);
+        if(HadithData.getInstance(context).isStandardTextSize()) {
+            lblListHeader2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        }
+        else{
+            lblListHeader2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 26);
+        }
         lblListHeader2.setTypeface(null, Typeface.BOLD);
         lblListHeader2.setText(values[1]);
         return convertView;
@@ -84,6 +100,12 @@ public class ExpandableListAdapter extends BaseExpandableListAdapter {
         }
         else{
             textChildItem.setText("Not Found");
+        }
+        if(HadithData.getInstance(context).isStandardTextSize()) {
+            textChildItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+        }
+        else{
+            textChildItem.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
         }
         return convertView;
     }
