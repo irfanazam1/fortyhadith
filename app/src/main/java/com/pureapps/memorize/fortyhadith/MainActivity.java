@@ -15,6 +15,7 @@ import android.view.View;
 import android.widget.ExpandableListView;
 import android.widget.ImageButton;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private ExpandableListView listView;
@@ -28,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private Drawable collapseImage;
     private SharedPreferences sharedPref;
+    private TextView lblHome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         collapseIcon = ContextCompat.getDrawable(this, R.drawable.ic_expand_less);
         expandImage = ContextCompat.getDrawable(this, R.drawable.background);
         collapseImage = ContextCompat.getDrawable(this, R.drawable.background_one);
+        lblHome = (TextView) findViewById(R.id.lblHome);
     }
 
     private void loadSettings(){
@@ -63,19 +66,31 @@ public class MainActivity extends AppCompatActivity {
         hadithExpander.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!isExpanded) {
-                    hadithLayout.setVisibility(View.VISIBLE);
-                    hadithExpander.setBackground(collapseIcon);
-                    mainLayout.setBackground(collapseImage);
-                } else {
-                    hadithLayout.setVisibility(View.INVISIBLE);
-                    hadithExpander.setBackground(expandIcon);
-                    mainLayout.setBackground(expandImage);
-
-                }
-                isExpanded = !isExpanded;
+                toggleView();
             }
         });
+
+        lblHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                toggleView();
+            }
+        });
+    }
+
+    private void toggleView(){
+        if (!isExpanded) {
+            hadithLayout.setVisibility(View.VISIBLE);
+            hadithExpander.setBackground(collapseIcon);
+            mainLayout.setBackground(collapseImage);
+            lblHome.setText(R.string.home);
+        } else {
+            hadithLayout.setVisibility(View.INVISIBLE);
+            hadithExpander.setBackground(expandIcon);
+            mainLayout.setBackground(expandImage);
+            lblHome.setText(R.string.ahadith);
+        }
+        isExpanded = !isExpanded;
     }
 
     @Override

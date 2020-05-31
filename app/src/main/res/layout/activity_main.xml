@@ -18,14 +18,29 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="0.25">
-        <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/hidthExpander"
-            android:background="@drawable/ic_expand_more"
-            android:layout_alignParentLeft="true"
-            >
-        </ImageButton>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/hidthExpander"
+                android:background="@drawable/ic_expand_more"
+                android:layout_alignParentLeft="true"
+                >
+            </ImageButton>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/ahadith"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="@color/black"
+                android:id="@+id/lblHome"
+                >
+            </TextView>
+        </LinearLayout>
+
         <ImageButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
