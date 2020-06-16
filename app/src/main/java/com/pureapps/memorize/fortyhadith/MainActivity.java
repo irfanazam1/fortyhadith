@@ -56,8 +56,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void loadSettings(){
         sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-        HadithData.getInstance(this).setTranslationLanguage(sharedPref.getString(getResources().getString(R.string.language_key),
-                getResources().getString(R.string.default_language)));
+        HadithData.getInstance(this).setTranslationLanguage(sharedPref.getString(getResources().getString(R.string.language_key), getResources().getString(R.string.default_language)));
         Boolean textSizePref = sharedPref.getBoolean(getResources().getString(R.string.text_size_key), false);
         HadithData.getInstance(this).setStandardTextSize(!textSizePref);
     }
@@ -108,8 +107,10 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         finish();
         startActivity(getIntent());
-        //LayoutInflater inflater = (LayoutInflater)getSystemService(LAYOUT_INFLATER_SERVICE);
-        //View listView = inflater.inflate(R.layout., null);
-        //listView.callOnClick();
+    }
+
+    public void openAbout(View view) {
+        Intent about = new Intent(this, About.class);
+        startActivity(about);
     }
 }
